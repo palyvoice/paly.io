@@ -49,4 +49,8 @@ class PalyIO < Sinatra::Base
   get '/:key' do
     redirect to fetch_url params[:key]
   end
+
+  post '/postreceive' do
+    `git pull origin master`
+  end
 end
