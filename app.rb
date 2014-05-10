@@ -52,5 +52,6 @@ class PalyIO < Sinatra::Base
 
   post '/postreceive' do
     `git pull origin master`
+    `./restart.sh`
   end
 end
