@@ -46,7 +46,7 @@ class PalyIO < Sinatra::Base
   end
 
   get '/:key' do
-    redirect to fetch_url params[:key]
+    redirect to fetch_url(params[:key]).url
   end
 
   post '/postreceive' do
