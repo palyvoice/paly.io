@@ -2,3 +2,6 @@
 /deps
 /tmp
 erl_crash.dump
+*~
+*\#
+bundle

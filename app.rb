@@ -1,9 +1,8 @@
 require 'sinatra'
-require 'redis'
+require './db'
 
 class PalyIO < Sinatra::Base
   configure do
-    @@redis = Redis.new
     @@host = "http://url.palyvoice.com"
 
     def gen_rand size=6
@@ -11,8 +10,16 @@ class PalyIO < Sinatra::Base
       (0...size).map{ charset.to_a[rand(charset.size)] }.join
     end
 
+    def fetch_url key
+      Link.first(:shortkey => key)
+    end
+
     def key_exists? key
-      @@redis.get(key.downcase) != nil
+      fetch_url(key) != nil
+    end
+
+    def save_url key, url
+      Link.create(:shortkey => key, :url => url)
     end
 
     def gen_key size=6
@@ -22,14 +29,6 @@ class PalyIO < Sinatra::Base
       else
         return attempt
       end
-    end
-
-    def save_url key, url
-      @@redis.set key, url
-    end
-
-    def fetch_url key
-      @@redis.get key
     end
   end
 
