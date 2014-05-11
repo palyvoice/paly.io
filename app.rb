@@ -11,15 +11,15 @@ class PalyIO < Sinatra::Base
     end
 
     def fetch_url key
-      Link.first(:shortkey => key)
+      Link.first(:shortkey => key.upcase)
     end
 
     def key_exists? key
-      fetch_url(key) != nil
+      fetch_url(key.upcase) != nil
     end
 
     def save_url key, url
-      Link.create(:shortkey => key, :url => url)
+      Link.create(:shortkey => key.upcase, :url => url)
     end
 
     def gen_key size=6, num_attempts=0
@@ -31,6 +31,12 @@ class PalyIO < Sinatra::Base
         return attempt
       end
     end
+
+    def valid_custom_key? key
+      exp = /^([\w]|-){5,}$/ #five or more letters/digits/underscores/dashes
+
+      return (key =~ exp) == 0 && !key_exists?
+    end
   end
 
   get '/' do
@@ -38,16 +44,26 @@ class PalyIO < Sinatra::Base
   end
 
   post '/shorten' do
+    custom = params[:customurl].strip
     url = params[:url]
     url = "http://#{url}" unless url[/^https?/]
 
-    key = gen_key
-    save_url key, url
+    if custom.strip.empty?
+      key = gen_key
+      save_url key, url
+    elsif valid_custom_key? custom
+      key = custom
+      save_url key, url
+    else
+      key = "error"
+    end
+     
     "Your URL is <a target='_blank' href='#{@@host}/#{key}'>#{@@host}/#{key}</a>"
   end
 
   get '/:key' do
-    redirect to fetch_url(params[:key]).url
+    redirect to fetch_url(params[:key]).url if key_exists? params[:key]
+    redirect to "http://paly.io"
   end
 
   post '/postreceive' do
