@@ -33,12 +33,19 @@
         <form id="urlform" action="/shorten" method="POST">
           <div class="col-md-10">
             <h3>Paste your long URL here:</h3>
-            <input type="text" id="url" name="url" />
+	    
+	    <div class="text-box-wrapper">
+              <input type="text" id="url" name="url" />
+	    </div>
           </div>
+
 	  <br class="clear">
-          <h4>Custom url: (optional)</h4>
-          http://paly.io/
-          <input type="text" id="customurl" name="customurl" />
+
+	  <div class="text-box-wrapper">
+            <h4>Custom url: (optional)</h4>
+            http://paly.io/
+            <input type="text" id="customurl" name="customurl" />
+	  </div>
 
           <div class="col-md-2">
             <input type="submit" id="submit" class="btn btn-primary btn-lg" />

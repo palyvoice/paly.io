@@ -3,11 +3,10 @@
     height: 40px;
     line-height: 40px;
     font-size: 30px;
-    margin-left: 20px;
     margin-bottom: 5px;
 }
 
-#urlform #customurl {
+#urlform .text-box-wrapper {
     margin-left: 20px;
 }
 
