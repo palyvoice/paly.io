@@ -22,10 +22,11 @@ class PalyIO < Sinatra::Base
       Link.create(:shortkey => key, :url => url)
     end
 
-    def gen_key size=6
+    def gen_key size=6, num_attempts=0
       attempt = gen_rand size
       if key_exists? attempt
-        gen_key size+1
+        return gen_key size+1 if num_attempts > 9
+        return gen_key size, num_attempts + 1
       else
         return attempt
       end
