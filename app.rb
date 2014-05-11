@@ -48,15 +48,15 @@ class PalyIO < Sinatra::Base
     url = params[:url]
     url = "http://#{url}" unless url[/^https?/]
 
-    if custom.strip.empty?
+#    if custom.strip.empty?
       key = gen_key
       save_url key, url
-    elsif valid_custom_key? custom
-      key = custom
-      save_url key, url
-    else
-      key = "error"
-    end
+ #   elsif valid_custom_key? custom
+ #     key = custom
+ #     save_url key, url
+ #   else
+ #     key = "error"
+ #   end
      
     "Your URL is <a target='_blank' href='#{@@host}/#{key}'>#{@@host}/#{key}</a>"
   end
