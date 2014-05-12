@@ -38,6 +38,10 @@ body {
     margin-bottom: 5px;
 }
 
+#urlform h3 {
+    margin-top: 8px;
+}
+
 #urlform .text-box-wrapper {
     margin-left: 20px;
 }
