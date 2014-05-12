@@ -3,8 +3,6 @@ working = ENV['PALYIO_WORKING_DIR']
 
 @dir = "#{home}#{working}"
 
-puts @dir
-
 worker_processes 64
 working_directory @dir
 
