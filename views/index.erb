@@ -23,30 +23,32 @@
   </head>
 
   <body>
-    <div class="container" id="full">
-      <div class="page-header">
-        <h1>paly.io</h1>
-        <p class="lead">Paly's URL shortener</p>
-      </div>
+    <div id="wrapper">
+      <div class="container" id="full">
+	<div class="page-header">
+          <h1>paly.io</h1>
+          <p class="lead">Paly's URL shortener</p>
+	</div>
 
-      <div class="row">
-        <form id="urlform" action="/shorten" method="POST">
-          <div class="col-md-10">
-            <h3>Paste your long URL here:</h3>	    
-	    <div class="text-box-wrapper">
-              <input type="text" id="url" name="url" />
-	    </div>
-            <h4>Custom url: (optional)</h4>
-	    <div class="text-box-wrapper">
-              http://paly.io/
-              <input type="text" id="customurl" name="customurl" />
-	    </div>
-          </div>
+	<div class="row">
+          <form id="urlform" action="/shorten" method="POST">
+            <div class="col-md-10">
+              <h3>Paste your long URL here:</h3>	    
+	      <div class="text-box-wrapper">
+		<input type="text" id="url" name="url" />
+	      </div>
+              <h4>Custom url: (optional)</h4>
+	      <div class="text-box-wrapper">
+		http://paly.io/
+		<input type="text" id="customurl" name="customurl" />
+	      </div>
+            </div>
 
-          <div class="col-md-2">
-            <input type="submit" id="submit" class="btn btn-primary btn-lg" />
-          </div>
-        </form>
+            <div class="col-md-2">
+              <input type="submit" id="submit" class="btn btn-primary btn-lg" />
+            </div>
+          </form>
+	</div>
       </div>
     </div>
 

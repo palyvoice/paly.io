@@ -3,8 +3,12 @@ body {
     background-color: #f5f5f5;
 }
 
+#wrapper {
+    padding: 30px;
+}
+
 #full{
-    margin: 30px 5%;
+    margin: auto;
     background-color: white;
     padding: 30px;
 
