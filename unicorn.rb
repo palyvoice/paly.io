@@ -1,9 +1,10 @@
 home = ENV['PALYIO_HOME_DIR']
 working = ENV['PALYIO_WORKING_DIR']
+procs = ENV['PALYIO_PROCESSES']
 
 @dir = "#{home}#{working}"
 
-worker_processes 64
+worker_processes procs
 working_directory @dir
 
 timeout 30
