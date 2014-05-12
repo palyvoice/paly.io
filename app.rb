@@ -15,11 +15,11 @@ class PalyIO < Sinatra::Base
     end
 
     def key_exists? key
-      fetch_url(key.upcase) != nil
+      fetch_url(key) != nil
     end
 
     def save_url key, url
-      Link.create(:shortkey => key.upcase, :url => url)
+      Link.create(:shortkey => key, :url => url)
     end
 
     def gen_key size=6, num_attempts=0
@@ -57,13 +57,13 @@ class PalyIO < Sinatra::Base
  #   else
  #     key = "error"
  #   end
-     
+
     "Your URL is <a target='_blank' href='#{@@host}/#{key}'>#{@@host}/#{key}</a>"
   end
 
   get '/:key' do
     redirect to fetch_url(params[:key]).url if key_exists? params[:key]
-    redirect to "http://paly.io"
+    "URL does not exist"
   end
 
   post '/postreceive' do
