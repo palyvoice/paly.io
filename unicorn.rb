@@ -1,7 +1,7 @@
 home = ENV['PALYIO_HOME_DIR']
 working = ENV['PALYIO_WORKING_DIR']
 
-@dir = "#{home}/#{working}"
+@dir = "#{home}#{working}"
 
 puts @dir
 
