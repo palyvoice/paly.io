@@ -1,8 +1,8 @@
 Functionality
 - AJAX
-- Only allow URLs in the URL field
 - Disallow leading & trailing dashes & underscores in custom keys
 - Voice story URLs
+- Rate limiting
 
 Design
 - Kill button gradient
