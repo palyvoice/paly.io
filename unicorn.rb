@@ -14,5 +14,5 @@ listen "#{@dir}tmp/sockets/unicorn.sock", :backlog => 64
 
 pid "#{@dir}tmp/pids/unicorn.pid"
 
-stderr_path "#{home}/log/unicorn.stderr.log"
-stdout_path "#{home}/log/unicorn.stdout.log"
+stderr_path "#{home}log/unicorn.stderr.log"
+stdout_path "#{home}log/unicorn.stdout.log"
