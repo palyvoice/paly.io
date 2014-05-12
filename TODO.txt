@@ -1,0 +1,7 @@
+Functionality
+- AJAX
+- Only allow URLs in the URL field
+
+Design
+- Favicon
+- Kill button gradient
