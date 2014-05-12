@@ -35,7 +35,7 @@ class PalyIO < Sinatra::Base
     def valid_custom_key? key
       exp = /^([\w]|-){5,}$/ #five or more letters/digits/underscores/dashes
 
-      #return (key =~ exp) == 0 && !key_exists? key
+      return (key =~ exp) == 0 && !key_exists?(key)
     end
   end
 
