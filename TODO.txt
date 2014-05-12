@@ -5,6 +5,5 @@ Functionality
 - Voice story URLs
 
 Design
-- Favicon
 - Kill button gradient
 - Custom URL text box should be on same line as "http://"
