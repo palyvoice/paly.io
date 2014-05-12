@@ -1,4 +1,4 @@
 sudo /etc/init.d/mysql start
-./start.sh
+$PALYIO_HOME_DIR$PALYIO_WORKING_DIR'scripts/start.sh'
 sudo /etc/init.d/nginx start
 

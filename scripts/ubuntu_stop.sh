@@ -1,3 +1,3 @@
 sudo /etc/init.d/mysql stop
-./stop.sh
+$PALYIO_HOME_DIR$PALYIO_WORKING_DIR'scripts/stop.sh'
 sudo /etc/init.d/nginx stop
