@@ -1,6 +1,6 @@
 home = ENV['PALYIO_HOME_DIR']
 working = ENV['PALYIO_WORKING_DIR']
-procs = ENV['PALYIO_PROCESSES']
+procs = ENV['PALYIO_PROCESSES'].to_i
 
 @dir = "#{home}#{working}"
 
