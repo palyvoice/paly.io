@@ -6,3 +6,4 @@ gem 'data_mapper'
 gem 'dm-mysql-adapter'
 
 gem 'unicorn'
+gem 'rack-throttle'
