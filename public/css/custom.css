@@ -55,3 +55,7 @@ body {
 .clear {
     clear: both;
 }
+
+#message-box {
+    border-radius: 5px;
+}

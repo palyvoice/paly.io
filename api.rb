@@ -29,5 +29,23 @@ class PalyIO
         return gen_whatis_response false, nil, "URL does not exist."
       end
     end
+
+    get '/shorten' do
+      custom = params[:custom].strip
+      url = params[:url]
+      url = "http://#{url}" unless url[/^https?/]
+
+      if custom.strip.empty?
+        key = gen_key
+        save_url key, url
+        return gen_shorten_response true, key, "Auto generated key."
+      elsif valid_custom_key? custom
+        key = custom
+        save_url key, url
+        return gen_shorten_response true, key, "Custom URL valid."
+      else
+        return gen_shorten_response false, nil, "Error generating custom URL. Please try another."
+      end
+    end
   end
 end
