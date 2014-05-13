@@ -47,5 +47,9 @@ class PalyIO
         return gen_shorten_response false, nil, "Error generating custom URL. Please try another."
       end
     end
+
+    get '/qr' do
+      gen_qr_code_response true, "#{@@host}/#{params[:key]}".to_qr(:size => '250x250'), "Not confirming that this is valid."
+    end
   end
 end
