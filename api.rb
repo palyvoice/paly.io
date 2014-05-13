@@ -19,5 +19,15 @@ class PalyIO
         return gen_validation_response false, custom, "Invalid key."
       end
     end
+
+    get '/whatis' do
+      key = params[:key]
+      link = fetch_url key
+      if link
+        return gen_whatis_response true, link.url, "URL exists."
+      else
+        return gen_whatis_response false, nil, "URL does not exist."
+      end
+    end
   end
 end
