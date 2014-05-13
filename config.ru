@@ -1,3 +1,11 @@
+require './before'
 require './app'
+require './api'
 
-run PalyIO
+map '/' do
+  run PalyIO::Web
+end
+
+map '/api' do
+  run PalyIO::API
+end

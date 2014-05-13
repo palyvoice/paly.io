@@ -1,9 +1,11 @@
-require 'sinatra'
+require 'grape'
 require './db'
 
 class PalyIO
-  class Web < Sinatra::Base
-    configure do
+  class API < Grape::API
+    format :json
+
+    helpers do
       @@host = ENV['PALYIO_HOSTNAME']
 
       def gen_rand size=6
@@ -40,36 +42,8 @@ class PalyIO
       end
     end
 
-    get '/' do
-      erb :index
-    end
-
-    post '/shorten' do
-      custom = params[:customurl].strip
-      url = params[:url]
-      url = "http://#{url}" unless url[/^https?/]
-
-      if custom.strip.empty?
-        key = gen_key
-        save_url key, url
-      elsif valid_custom_key? custom
-        key = custom
-        save_url key, url
-      else
-        return "Error generating custom URL. Please try another."
-      end
-
-      "Your URL is <a target='_blank' href='#{@@host}/#{key}'>#{@@host}/#{key}</a>"
-    end
-
-    get '/:key' do
-      redirect to fetch_url(params[:key]).url if key_exists? params[:key]
-      "URL does not exist"
-    end
-
-    post '/postreceive' do
-      `git pull origin master`
-      `./scripts/restart.sh`
+    get '/shorten' do
+      @@host
     end
   end
 end

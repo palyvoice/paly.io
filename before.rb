@@ -1,0 +1,1 @@
+class PalyIO; end
