@@ -24,7 +24,6 @@ class PalyIO
 
     post '/postreceive' do
       `git pull origin master`
-      `bundle install`
       `./scripts/restart.sh`
     end
   end
