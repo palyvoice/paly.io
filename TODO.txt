@@ -4,6 +4,10 @@ Functionality
 - Voice story URLs
 - Rate limiting
 
+API
+- Create with API
+- Integrate with JS
+
 Design
 - Kill button gradient
 - Custom URL text box should be on same line as "http://"
