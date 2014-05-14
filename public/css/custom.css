@@ -7,7 +7,7 @@ body {
     padding: 30px;
 }
 
-#full{
+.full {
     margin: auto;
     background-color: white;
     padding: 30px;
@@ -23,7 +23,6 @@ body {
 
 .page-header {
     margin-top: 0px;
-/*    border-bottom: 1px solid #355e3b; /* hunter green */
 }
 
 .page-header h1 {
@@ -68,4 +67,11 @@ body {
     font-size: 18px;
     display: inline-block;
     text-align: center;
+}
+
+.page-footer {
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-bottom: -20px;
 }
