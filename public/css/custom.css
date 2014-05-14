@@ -56,6 +56,16 @@ body {
     clear: both;
 }
 
+#message-box-wrapper {
+    display: table;
+    margin: auto;
+}
+
 #message-box {
     border-radius: 5px;
+    padding: 5px 10px;
+    width: auto;
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
 }
