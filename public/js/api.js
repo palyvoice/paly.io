@@ -30,7 +30,10 @@ var shortenURL = function shortenURLF (url, custom) {
     return makeAPIRequest('shorten', { url: url, custom: custom });
 };
 
-var submitURL = function submitURLF () {
+var submitURL = function submitURLF (e) {
+    e.preventDefault();
+    e.returnValue = false;
+
     var url = $("#url").val();
     var custom = $("#customurl").val();
     var messageBox = $("#message-box");
