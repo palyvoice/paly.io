@@ -38,7 +38,7 @@ var submitURL = function submitURLF () {
     var response = shortenURL(url, custom);
 
     if (response.success) {
-	var newurl = host+response.response;
+	var newurl = host + response.response;
 
 	var a = $("<a>", {
 	    href: newurl,
