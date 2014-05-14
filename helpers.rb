@@ -28,7 +28,7 @@ def gen_key size=6, num_attempts=0
 end
 
 def valid_custom_key? key
-  exp = /^([\w]|-){5,}$/ #five or more letters/digits/underscores/dashes
+  exp = /^[a-zA-Z0-9]([\w]|-){3,}[a-zA-Z0-9]$/ #five or more letters/digits/underscores/dashes, no leading/trailing underscores/dashes
 
   return (key =~ exp) == 0 && !key_exists?(key)
 end

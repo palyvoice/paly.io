@@ -1,5 +1,4 @@
 Functionality
-- Disallow leading & trailing dashes & underscores in custom keys
 - Voice story URLs
 - Rate limiting
 
