@@ -14,6 +14,7 @@ class Link
   property :id, Serial
   property :shortkey, String
   property :url, Text
+  property :hits, Integer, :default => 0
 end
 
 DataMapper.finalize
