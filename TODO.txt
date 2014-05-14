@@ -1,6 +1,7 @@
 Functionality
 - Voice story URLs
 - Rate limiting
+- Link created should have the hostname PALYIO_HOSTNAME
 
 API
 
