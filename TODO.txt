@@ -5,6 +5,7 @@ Functionality
 - Chrome extension (still publishing, needs polishing)
 - Clear inputs after submit
 - Better error handling
+- Live validation
 
 API
 
