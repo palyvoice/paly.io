@@ -54,8 +54,3 @@ var submitURL = function submitURLF () {
 
     return false;
 };
-
-$(document).ready(function () {
-    $("#urlform").submit(submitURL);
-    $("#submit").click(submitURL);
-});
