@@ -27,6 +27,10 @@ def gen_key size=6, num_attempts=0
   end
 end
 
+def valid_long_url? url
+  return url.strip.empty?
+end
+
 def valid_custom_key? key
   # five or more letters/digits/underscores/dashes, no leading/trailing underscores/dashes
   exp = /^[a-zA-Z0-9]([\w]|-){3,}[a-zA-Z0-9]$/

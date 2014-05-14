@@ -32,10 +32,13 @@ class PalyIO
 
     get '/shorten' do
       custom = params[:custom].strip
-      url = params[:url]
+      url = params[:url].strip
+      if url.empty? 
+        return gen_shorten_response false, nil, "Error: long URL is blank"
+      end
       url = "http://#{url}" unless url[/^https?/]
 
-      if custom.strip.empty?
+      if custom.empty?
         key = gen_key
         save_url key, url
         return gen_shorten_response true, key, "Auto generated key."
