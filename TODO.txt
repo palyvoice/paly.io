@@ -14,3 +14,6 @@ Design
 - Custom URL text box should be on same line as "http://"
 - "Powered by The Paly Voice" should be a sticker
 - Short URL should be more easily selectable
+
+Meta
+- Make README better
