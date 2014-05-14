@@ -1,5 +1,6 @@
-require 'sinatra'
 require 'google-qr'
+require 'open-uri'
+require 'sinatra'
 require './db'
 require './helpers'
 
@@ -19,7 +20,9 @@ class PalyIO
     end
 
     get '/qr/:key' do
-      "#{@@host}/#{params[:key]}".to_qr_image :size => '250x250'
+      content_type 'image/png'
+      qr = open("#{@@host}/#{params[:key]}".to_qr(:size => '250x250'))
+      qr.read
     end
 
     post '/postreceive' do
