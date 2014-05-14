@@ -7,4 +7,5 @@ gem 'dm-mysql-adapter'
 
 gem 'unicorn'
 gem 'rack-throttle'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'google-qr'
