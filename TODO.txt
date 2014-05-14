@@ -18,3 +18,4 @@ Design
 
 Meta
 - Make README better
+- Automated testing
