@@ -1,7 +1,8 @@
 Functionality
 - Voice story URLs
-- Rate limiting
 - Link created should have the hostname PALYIO_HOSTNAME
+  -> meaning, integrate env vars into js
+- Chrome extension (still publishing, needs polishing)
 
 API
 
