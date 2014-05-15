@@ -6,6 +6,7 @@ Functionality
 - Better error handling
 - Live validation
 - Shorten emails, Bitcoin addresses (& pattern match to distinguish?)
+  -> mail urls like mailto:tekknolagi@gmail.com are prepended with http :(
 
 API
 
