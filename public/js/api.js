@@ -51,7 +51,9 @@ var submitURL = function submitURLF (e) {
 	messageBox.css("background-color", "#A4E7A0");
 	messageBox.html("Your shortened URL is: " + a.outerHTML());
 
-	form[0].reset(); // clear html form fields
+	// clear html form fields' content and focus
+	form[0].reset();
+	$("#url").focus().blur();
     }
     else {
 	messageBox.css("background-color", "#F0A8A8");
