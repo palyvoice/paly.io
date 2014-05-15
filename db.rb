@@ -12,7 +12,7 @@ class Link
   include DataMapper::Resource
 
   property :id, Serial
-  property :shortkey, String
+  property :shortkey, String, :unique => true
   property :url, Text
   property :hits, Integer, :default => 0
 end
