@@ -2,7 +2,6 @@ Functionality
 - Voice story URLs
 - Link created should have the hostname PALYIO_HOSTNAME
   -> meaning, integrate env vars into js
-- Clear inputs after submit
 - Better error handling
 - Live validation
 - Shorten emails, Bitcoin addresses (& pattern match to distinguish?)
