@@ -11,14 +11,6 @@ describe PalyIO::API do
     PalyIO::API
   end
 
-  before(:all) do
-#    @@browser = Selenium::WebDriver.for(:chrome)
-  end
-
-  before(:each) do
-#    @@browser.get(ENV['PALYIO_HOSTNAME'])
-  end
-
   context :api do
     describe 'GET /shorten' do
       it 'shortens a given url' do
@@ -30,7 +22,14 @@ describe PalyIO::API do
 
     describe 'GET /whatis' do
       it 'gets the url for a given key' do
-        get '/whatis', { :key => 'buttface' }
+        url = Faker::Internet.http_url
+        key = Faker.numerify("######")
+        Link.create(:shortkey => key, :url => url)
+
+        get '/whatis', { :key => key }
+        hash = JSON.parse(last_response.body)
+        hash['success'].should == true
+        hash['response'].should == url
       end
     end
   end
