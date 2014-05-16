@@ -18,5 +18,7 @@ group :test do
   gem 'rack-test'
   gem 'rake'
   gem 'ffaker'
+
   gem 'selenium-webdriver'
+  gem 'capybara'
 end

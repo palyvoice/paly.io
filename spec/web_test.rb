@@ -1,21 +1,18 @@
-require 'rack/test'
-require 'minitest/autorun'
-require 'ffaker'
-require 'spec_helper'
 require './app'
+require 'spec_helper'
+
+set :environment, :test
 
 describe PalyIO::Web do
-  include Rack::Test::Methods
+  include Capybara::DSL
 
-  def app
-    PalyIO::Web
-  end
+  Capybara.app = PalyIO::Web
 
-  before(:all) do
-    @@browser = Selenium::WebDriver.for(:chrome)
-  end
-
-  before(:each) do
-    @@browser.get(ENV['PALYIO_HOSTNAME'])
+  describe 'home page' do
+    it 'submits a form to shorten a url' do
+      visit '/'
+      page.should have_content "Paste your long URL here"
+      page.should have_content "Maxwell Bernstein and Christopher Hinstorff"
+    end
   end
 end

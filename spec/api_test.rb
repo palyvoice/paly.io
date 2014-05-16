@@ -1,10 +1,8 @@
-require 'rack/test'
-require 'minitest/autorun'
-require 'ffaker'
-require 'spec_helper'
 require 'awesome_print'
 require 'json'
+
 require './api'
+require 'spec_helper'
 
 describe PalyIO::API do
   include Rack::Test::Methods
@@ -69,9 +67,7 @@ describe PalyIO::API do
         hash['success'].should == true
         hash['response'].should == custom
       end
-    end
 
-    describe 'GET /validate' do
       it 'makes sure an invalid key is invalid' do
         custom = Faker.numerify('####')
 
