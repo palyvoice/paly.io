@@ -5,7 +5,7 @@ Functionality
 - Better error handling
 - Live validation
 - Shorten emails, Bitcoin addresses (& pattern match to distinguish?)
-  -> mail urls like mailto:tekknolagi@gmail.com are prepended with http :(
+  -> mail urls like mailto:dumbass@maxbernste.in are prepended with http :(
 - Create overwrite code
 - Stats page
 
