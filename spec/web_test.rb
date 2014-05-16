@@ -1,18 +1,32 @@
 require './app'
 require 'spec_helper'
 
-set :environment, :test
-
 describe PalyIO::Web do
-  include Capybara::DSL
+  before(:all) do
+    Capybara.app = PalyIO::Web
+    Capybara.current_driver = :chrome
+  end
 
-  Capybara.app = PalyIO::Web
+  after(:all) do
+    Capybara.use_default_driver
+  end
+
+  before(:each) do
+    visit '/'
+  end
 
   describe 'home page' do
-    it 'submits a form to shorten a url' do
-      visit '/'
+    it 'is not 502ing' do
       page.should have_content "Paste your long URL here"
       page.should have_content "Maxwell Bernstein and Christopher Hinstorff"
+    end
+
+    it 'should have a submittable form' do
+      within '#urlform' do
+        fill_in 'url', :with => Faker::Internet.http_url
+        fill_in 'customurl', :with => Faker.numerify('######')
+      end
+      # click_button
     end
   end
 end
