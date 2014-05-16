@@ -33,6 +33,7 @@ class PalyIO
     post '/postreceive' do
       `git pull origin master`
       `bundle install`
+      `sleep 5`
       `./scripts/restart.sh`
     end
   end
