@@ -11,6 +11,8 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'google-qr'
 
 group :test do
+  gem 'awesome_print'
+
   gem 'rspec'
   gem 'minitest'
   gem 'rack-test'
