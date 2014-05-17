@@ -18,7 +18,7 @@ version 0.0.1
 `PALYIO_HOST` SQL host  
 `PALYIO_DATABASE` SQL database name  
 
-`PALYIO_HOSTNAME` site hostname (e.g. http://paly.io)  
-`PALYIO_HOME_DIR` home directory (e.g. /home/chris/)  
-`PALYIO_WORKING_DIR` working directory (e.g. path/to/paly.io)  
-`PALYIO_PROCESSES` number of worker processes alotted to Unicorn (e.g. 1)  
+`PALYIO_HOSTNAME` site hostname (e.g. `http://paly.io`)  
+`PALYIO_HOME_DIR` home directory (e.g. `/home/chris/`)  
+`PALYIO_WORKING_DIR` working directory (e.g. `path/to/paly.io`)  
+`PALYIO_PROCESSES` number of worker processes alotted to Unicorn (e.g. `1`)  
