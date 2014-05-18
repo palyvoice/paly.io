@@ -12,12 +12,9 @@ class PalyIO
 
     get '/validate' do
       custom = params[:custom].strip
+      valid, reason = valid_custom_key? custom
 
-      if valid_custom_key? custom
-        return gen_validation_response true, custom, 'Valid custom URL.'
-      else
-        return gen_validation_response false, custom, 'Invalid custom URL.'
-      end
+      return gen_validation_response valid, custom, reason
     end
 
     get '/meta' do

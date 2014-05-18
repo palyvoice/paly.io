@@ -35,8 +35,16 @@ def valid_custom_key? key
   # five or more letters/digits/underscores/dashes, no leading/trailing underscores/dashes
   exp = /^[a-zA-Z0-9]([\w]|-){3,}[a-zA-Z0-9]$/
 
+  if (key =~ exp) != 0
+    return false, 'URL is too short or does not have only alphanumeric, underscore, and dash characters.'
+  elsif key_exists?(key)
+    return false, 'URL already exists.'
+  else
+    return true, 'URL is valid.'
+  end
+
   # matches regex and does not already exist
-  return (key =~ exp) == 0 && !key_exists?(key)
+  #return (key =~ exp) == 0 && !key_exists?(key)
 end
 
 def method_missing(meth, *args, &block)
