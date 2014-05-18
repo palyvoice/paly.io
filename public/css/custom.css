@@ -55,12 +55,12 @@ body {
     clear: both;
 }
 
-#message-box-wrapper, #valid-box-wrapper {
+.message-box-wrapper {
     display: table;
     margin: auto;
 }
 
-#message-box, #valid-box {
+.message-box {
     border-radius: 5px;
     padding: 5px 10px;
     width: auto;
@@ -69,11 +69,19 @@ body {
     text-align: center;
 }
 
-#valid-box-wrapper {
+.message-box.ok {
+    background-color: #A4E7A0;
+}
+
+.message-box.error {
+    background-color: #F0A8A8;
+}
+
+.message-box-wrapper.valid {
    display: inline;
 }
 
-#valid-box {
+.message-box.valid {
     padding: 0px 10px;
 }
 

@@ -1,15 +1,15 @@
 $('#customurl').typing({
     stop: function (event, $elem) {
 	var custom = $elem.val();
-	var validBox = $('#valid-box');
+	var validBox = $('.message-box.valid');
 
 	var response = isValid(custom);
 
 	if (response.success) {
-	    validBox.css('background-color', '#A4E7A0');
+	    validBox.addClass('ok');
 	}
 	else {
-	    validBox.css('background-color', '#F0A8A8');
+	    validBox.addClass('error');
 	}
 	validBox.html(response.comment);
     },

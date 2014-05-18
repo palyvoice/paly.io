@@ -35,7 +35,7 @@ var submitURL = function submitURLF (e) {
     var form = $('#urlform');
     var url = $('#url').val();
     var custom = $('#customurl').val();
-    var messageBox = $('#message-box');
+    var messageBox = $('.message-box.global');
 
     var response = shortenURL(url, custom);
 
@@ -46,7 +46,7 @@ var submitURL = function submitURLF (e) {
 	    href: newurl,
 	    html: newurl
 	});
-	messageBox.css('background-color', '#A4E7A0');
+	messageBox.addClass('ok');
 	messageBox.html('Your shortened URL is: ' + a.outerHTML());
 
 	// clear html form fields' content and focus
@@ -54,7 +54,7 @@ var submitURL = function submitURLF (e) {
 	$('#url').focus().blur();
     }
     else {
-	messageBox.css('background-color', '#F0A8A8');
+	messageBox.addClass('error');
 	messageBox.html('Error: ' + response.comment);
     }
 
