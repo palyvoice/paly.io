@@ -14,9 +14,9 @@ class PalyIO
       custom = params[:custom].strip
 
       if valid_custom_key? custom
-        return gen_validation_response true, custom, "Valid key."
+        return gen_validation_response true, custom, 'Valid custom URL.'
       else
-        return gen_validation_response false, custom, "Invalid key."
+        return gen_validation_response false, custom, 'Invalid custom URL.'
       end
     end
 
@@ -24,9 +24,9 @@ class PalyIO
       key = params[:key]
       link = fetch_url key
       if link
-        return gen_meta_response true, link, "URL exists."
+        return gen_meta_response true, link, 'URL exists.'
       else
-        return gen_meta_response false, nil, "URL does not exist."
+        return gen_meta_response false, nil, 'URL does not exist.'
       end
     end
 
@@ -34,9 +34,9 @@ class PalyIO
       key = params[:key]
       link = fetch_url key
       if link
-        return gen_whatis_response true, link.url, "URL exists."
+        return gen_whatis_response true, link.url, 'URL exists.'
       else
-        return gen_whatis_response false, nil, "URL does not exist."
+        return gen_whatis_response false, nil, 'URL does not exist.'
       end
     end
 
@@ -44,25 +44,25 @@ class PalyIO
       custom = params[:custom].strip
       url = params[:url].strip
       if url.empty?
-        return gen_shorten_response false, nil, "Error: long URL is blank"
+        return gen_shorten_response false, nil, 'Error: long URL is blank'
       end
-      url = "http://#{url}" unless url[/^https?/]
+      url = 'http://#{url}' unless url[/^https?/]
 
       if custom.empty?
         key = gen_key
         save_url key, url
-        return gen_shorten_response true, key, "Auto generated key."
+        return gen_shorten_response true, key, 'Auto generated key.'
       elsif valid_custom_key? custom
         key = custom
         save_url key, url
-        return gen_shorten_response true, key, "Custom URL valid."
+        return gen_shorten_response true, key, 'Custom URL valid.'
       else
-        return gen_shorten_response false, nil, "Error generating custom URL. Please try another."
+        return gen_shorten_response false, nil, 'Error generating custom URL. Please try another.'
       end
     end
 
     get '/qr' do
-      gen_qr_code_response true, "#{@@host}/#{params[:key]}".to_qr(:size => '250x250'), "Not confirming that this is valid."
+      gen_qr_code_response true, "#{@@host}/#{params[:key]}".to_qr(:size => '250x250'), 'Not confirming that this is valid.'
     end
   end
 end
