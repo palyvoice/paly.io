@@ -60,7 +60,6 @@ describe PalyIO::Web do
 
       # somehow get the new JS to clear the message box in the tests :(
       page.find('.message-box.valid').visible?.should == false
-      save_and_open_page
     end
   end
 end
