@@ -4,12 +4,13 @@ $('#customurl').typing({
 	var validBox = $('.message-box.valid');
 
 	if (custom == '') {
-	    validBox.html('');
+	    validBox.hide();
 	    return;
 	}
 
 	var response = isValid(custom);
 
+	validBox.show();
 	if (response.success) {
 	    validBox.removeClass('error');
 	    validBox.addClass('ok');

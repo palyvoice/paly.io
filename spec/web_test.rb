@@ -3,8 +3,8 @@ require 'spec_helper'
 
 describe PalyIO::Web do
   before(:all) do
-    # ensure both API and Web are running, so that the JS doesn't die
-    Capybara.app, _ = Rack::Builder.parse_file(File.expand_path('../../config.ru', __FILE__))
+    Capybara.app_host = ENV['PALYIO_HOSTNAME']
+    Capybara.run_server = false
     Capybara.current_driver = :chrome
   end
 
@@ -59,7 +59,8 @@ describe PalyIO::Web do
       end
 
       # somehow get the new JS to clear the message box in the tests :(
-      expect(page.find('.message-box.valid').native.text).to eq ''
+      page.find('.message-box.valid').visible?.should == false
+      save_and_open_page
     end
   end
 end
