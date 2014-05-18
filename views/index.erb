@@ -1,53 +1,57 @@
 <%= erb :header, :layout => false %>
-  <body>
-    <div id="wrapper">
-      <div class="container full">
-	<div class="page-header">
-          <h1>paly.io</h1>
-          <p class="lead">Paly's URL shortener</p>
-	</div>
 
-	<div class="row">
-	  <div id="message-box-wrapper">
-	    <div id="message-box"></div>
-	  </div>
-	</div>
+<body>
+  <div id="wrapper">
+    <div class="container full">
+      <div class="page-header">
+        <h1>paly.io</h1>
+        <p class="lead">Paly's URL shortener</p>
+      </div>
 
+      <div class="row">
+	<div id="message-box-wrapper">
+	  <div id="message-box"></div>
+	</div>
+      </div>
+
+      <form id="urlform" action="/shorten" method="POST">
 	<div class="row">
-          <form id="urlform" action="/shorten" method="POST">
-            <div class="col-md-10">
-              <h3>Paste your long URL here:</h3>	    
-	      <div class="text-box-wrapper">
-		<input type="text" id="url" name="url" />
-	      </div>
+          <div class="col-md-10">
+            <h3>Paste your long URL here:</h3>	    
+	    <div class="text-box-wrapper">
+	      <input type="text" id="url" name="url" />
+	    </div>
+
               <h4>Custom URL: (optional)</h4>
 	      <div class="text-box-wrapper">
 		http://paly.io/
 		<input type="text" id="customurl" name="custom" />
+
+		<div id="valid-box-wrapper">
+		  <div id="valid-box"></div>
+		</div>
 	      </div>
-            </div>
+	  </div>
 
-            <div class="col-md-2">
-              <input type="submit" id="submit" class="btn btn-primary btn-lg" />
-            </div>
-          </form>
+          <div class="col-md-2">
+            <input type="submit" id="submit" class="btn btn-primary btn-lg" />
+          </div>
 	</div> <!-- /row -->
-	<%= erb :footer, :layout => false %>
-      </div>
+      </form>
+
+      <%= erb :footer, :layout => false %>
     </div>
+  </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="/js/api.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#urlform").submit(submitURL);
-        $("#submit").click(submitURL);
-      });
-    </script>
-  </body>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/js/jquery.typing-0.2.0.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="/js/api.js" type="text/javascript"></script>
+  <script src="/js/index.js" type="text/javascript"></script>
+</body>
 </html>
