@@ -48,16 +48,18 @@ class PalyIO
       end
       url = "http://#{url}" unless url[/^https?/]
 
+      valid, reason = valid_custom_key?(custom)
+
       if custom.empty?
         key = gen_key
         save_url key, url
         return gen_shorten_response true, key, 'Auto generated key.'
-      elsif valid_custom_key? custom
+      elsif valid
         key = custom
         save_url key, url
-        return gen_shorten_response true, key, 'Custom URL valid.'
+        return gen_shorten_response true, key, reason
       else
-        return gen_shorten_response false, nil, 'Error generating custom URL. Please try another.'
+        return gen_shorten_response false, nil, reason
       end
     end
 
