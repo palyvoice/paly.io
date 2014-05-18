@@ -46,7 +46,7 @@ class PalyIO
       if url.empty?
         return gen_shorten_response false, nil, 'Error: long URL is blank'
       end
-      url = 'http://#{url}' unless url[/^https?/]
+      url = "http://#{url}" unless url[/^https?/]
 
       if custom.empty?
         key = gen_key
