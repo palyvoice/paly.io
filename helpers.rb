@@ -28,7 +28,7 @@ def gen_key size=6, num_attempts=0
 end
 
 def valid_long_url? url
-  return url.strip.empty?
+  return !url.strip.empty?
 end
 
 def valid_custom_key? key
