@@ -3,7 +3,8 @@ require 'spec_helper'
 
 describe PalyIO::Web do
   before(:all) do
-    Capybara.app = PalyIO::Web
+    # ensure both API and Web are running, so that the JS doesn't die
+    Capybara.app, _ = Rack::Builder.parse_file(File.expand_path('../../config.ru', __FILE__))
     Capybara.current_driver = :chrome
   end
 
@@ -15,10 +16,10 @@ describe PalyIO::Web do
     visit '/'
   end
 
-  describe 'home page' do
+  describe 'home page', :js => true, :driver => :chrome do
     it 'is not 502ing' do
-      page.should have_content "Paste your long URL here"
-      page.should have_content "Maxwell Bernstein and Christopher Hinstorff"
+      page.should have_content 'Paste your long URL here'
+      page.should have_content 'Maxwell Bernstein and Christopher Hinstorff'
     end
 
     it 'should have a submittable form' do
@@ -26,7 +27,8 @@ describe PalyIO::Web do
         fill_in 'url', :with => Faker::Internet.http_url
         fill_in 'customurl', :with => Faker.numerify('######')
       end
-      # click_button
+      find_button('submit').click
+      expect(page).to have_content 'Your shortened URL is'
     end
   end
 end
