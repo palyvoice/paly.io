@@ -47,5 +47,12 @@ describe PalyIO::Web do
       find_button('submit').click
       expect(page).to have_content 'Your shortened URL is'
     end
+
+    it 'displays a message after you stop typing a custom url' do
+      within '#urlform' do
+        fill_in 'customurl', :with => Faker.numerify('#######')
+      end
+      expect(page).to have_content 'Valid custom URL.'
+    end
   end
 end
