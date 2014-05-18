@@ -46,6 +46,8 @@ var submitURL = function submitURLF (e) {
 	    href: newurl,
 	    html: newurl
 	});
+
+	messageBox.removeClass('error');
 	messageBox.addClass('ok');
 	messageBox.html('Your shortened URL is: ' + a.outerHTML());
 
@@ -54,6 +56,7 @@ var submitURL = function submitURLF (e) {
 	$('#url').focus().blur();
     }
     else {
+	messageBox.removeClass('ok');
 	messageBox.addClass('error');
 	messageBox.html('Error: ' + response.comment);
     }

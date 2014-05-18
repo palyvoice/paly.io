@@ -6,9 +6,11 @@ $('#customurl').typing({
 	var response = isValid(custom);
 
 	if (response.success) {
+	    validBox.removeClass('error');
 	    validBox.addClass('ok');
 	}
 	else {
+	    validBox.removeClass('ok');
 	    validBox.addClass('error');
 	}
 	validBox.html(response.comment);
