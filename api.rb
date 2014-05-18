@@ -23,6 +23,7 @@ class PalyIO
     get '/meta' do
       key = params[:key]
       link = fetch_url key
+
       if link
         return gen_meta_response true, link, 'URL exists.'
       else
@@ -33,6 +34,7 @@ class PalyIO
     get '/whatis' do
       key = params[:key]
       link = fetch_url key
+
       if link
         return gen_whatis_response true, link.url, 'URL exists.'
       else
@@ -43,6 +45,7 @@ class PalyIO
     get '/shorten' do
       custom = params[:custom].strip
       url = params[:url].strip
+
       if url.empty?
         return gen_shorten_response false, nil, 'Error: long URL is blank'
       end
