@@ -3,6 +3,11 @@ $('#customurl').typing({
 	var custom = $elem.val();
 	var validBox = $('.message-box.valid');
 
+	if (custom == '') {
+	    validBox.html('');
+	    return;
+	}
+
 	var response = isValid(custom);
 
 	if (response.success) {
