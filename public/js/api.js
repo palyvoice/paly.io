@@ -57,7 +57,7 @@ var submitURL = function submitURLF (e) {
     }
     else {
 	messageBox.css("background-color", "#F0A8A8");
-	messageBox.html(response.comment);
+	messageBox.html('Error: ' + response.comment);
     }
 
     return false;

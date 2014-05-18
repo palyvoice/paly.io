@@ -30,5 +30,14 @@ describe PalyIO::Web do
       find_button('submit').click
       expect(page).to have_content 'Your shortened URL is'
     end
+
+    it 'disallows custom URLs under 5 characters' do
+      within '#urlform' do
+        fill_in 'url', :with => Faker::Internet.http_url
+        fill_in 'customurl', :with => Faker.numerify('##')
+      end
+      find_button('submit').click
+      expect(page).to have_content 'Error'
+    end
   end
 end
