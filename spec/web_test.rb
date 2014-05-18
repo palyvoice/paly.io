@@ -52,7 +52,14 @@ describe PalyIO::Web do
       within '#urlform' do
         fill_in 'customurl', :with => Faker.numerify('#######')
       end
-      expect(page).to have_content 'Valid custom URL.'
+      expect(page).to have_content 'URL is valid.'
+
+      within '#urlform' do
+        fill_in 'customurl', :with => ''
+      end
+
+      # somehow get the new JS to clear the message box in the tests :(
+      expect(page.find('.message-box.valid').native.text).to eq ''
     end
   end
 end
