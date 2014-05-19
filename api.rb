@@ -44,7 +44,7 @@ class PalyIO
       url = params[:url].strip
 
       if url.empty?
-        return gen_shorten_response false, nil, 'Error: long URL is blank'
+        return gen_shorten_response false, nil, 'Long URL is blank'
       end
       url = "http://#{url}" unless url[/^https?/]
 
