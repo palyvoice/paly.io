@@ -3,6 +3,7 @@ Functionality
 - Link created should have the hostname PALYIO_HOSTNAME
   -> meaning, integrate env vars into js
 - Better error handling
+  -> Including a separate error_message file?
 - Live validation
 - Shorten emails, Bitcoin addresses (& pattern match to distinguish?)
   -> mail urls like mailto:dumbass@maxbernste.in are prepended with http :(
