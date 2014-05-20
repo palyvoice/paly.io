@@ -1,6 +1,17 @@
 require './app'
 require 'spec_helper'
 
+def trigger_event_for(selector, event)
+  raise "Please supply a selector" if selector.blank?
+  if Capybara.javascript_driver == :selenium
+    page.execute_script %Q{ $('#{selector}').trigger("#{event}") }
+  end
+
+  if Capybara.javascript_driver == :webkit
+    page.find(selector).trigger(event.to_sym)
+  end
+end
+
 describe PalyIO::Web do
   before(:all) do
     Capybara.app_host = ENV['PALYIO_HOSTNAME']
@@ -53,13 +64,12 @@ describe PalyIO::Web do
         fill_in 'customurl', :with => Faker.numerify('#######')
       end
       expect(page).to have_content 'URL is valid.'
+      expect(page).to have_selector('.message-box.valid', :visible => true)
 
       within '#urlform' do
         fill_in 'customurl', :with => ''
       end
-
-      # somehow get the new JS to clear the message box in the tests :(
-      page.find('.message-box.valid').visible?.should == false
+      expect(page).to have_selector('.message-box.valid', :visible => false)
     end
   end
 end
