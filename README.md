@@ -22,3 +22,7 @@ version 0.0.1
 `PALYIO_HOME_DIR` home directory (e.g. `/home/chris/`)  
 `PALYIO_WORKING_DIR` working directory (e.g. `path/to/paly.io`)  
 `PALYIO_PROCESSES` number of worker processes alotted to Unicorn (e.g. `1`)  
+
+## License
+
+Coming soon.
