@@ -6,10 +6,6 @@ class PalyIO
   class API < Grape::API
     format :json
 
-    helpers do
-      @@host = ENV['PALYIO_HOSTNAME']
-    end
-
     get '/validate' do
       custom = params[:custom].strip
       valid, reason = valid_custom_key? custom
@@ -64,7 +60,7 @@ class PalyIO
     end
 
     get '/qr' do
-      gen_qr_code_response true, "#{@@host}/#{params[:key]}".to_qr(:size => '250x250'), 'Not confirming that this is valid.'
+      gen_qr_code_response true, "#{host}/#{params[:key]}".to_qr(:size => '250x250'), 'Not confirming that this is valid.'
     end
   end
 end
