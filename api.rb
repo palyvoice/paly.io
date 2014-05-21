@@ -48,7 +48,7 @@ class PalyIO
       end
       url = "http://#{url}" unless url[/^https?/]
 
-      valid, reason = valid_custom_key?(custom)
+      valid, reason = valid_custom_key? custom
 
       if custom.empty?
         key = gen_key
