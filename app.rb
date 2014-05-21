@@ -16,9 +16,9 @@ class PalyIO
 
     get '/:key' do
       if key_exists? params[:key]
-        l = fetch_url(params[:key])
+        l = fetch_url params[:key]
         hits = l.hits
-        l.update(:hits => hits + 1)
+        l.update :hits => hits + 1
         redirect to l.url
       end
       'URL does not exist'
