@@ -6,11 +6,11 @@ end
 
 def gen_rand size=6
   charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T U W X Y Z}
-  (0...size).map{ charset.to_a[rand(charset.size)] }.join
+  (0...size).map{ charset.to_a[rand charset.size] }.join
 end
 
 def fetch_url key
-  Link.first(:shortkey => key.upcase)
+  Link.first :shortkey => key.upcase
 end
 
 def key_exists? key
@@ -18,7 +18,7 @@ def key_exists? key
 end
 
 def save_url key, url
-  Link.create(:shortkey => key, :url => url)
+  Link.create :shortkey => key, :url => url
 end
 
 def gen_key size=6, num_attempts=0
@@ -41,7 +41,7 @@ def valid_custom_key? key
 
   if (key =~ exp) != 0
     return false, 'URL is too short or does not have only alphanumeric, underscore, and dash characters.'
-  elsif key_exists?(key)
+  elsif key_exists? key
     return false, 'URL already exists.'
   else
     return true, 'URL is valid.'
@@ -51,9 +51,9 @@ def valid_custom_key? key
   #return (key =~ exp) == 0 && !key_exists?(key)
 end
 
-def method_missing(meth, *args, &block)
+def method_missing meth, *args, &block
   if meth.to_s =~ /^gen_(.+)_response$/
-    generic_response($1, *args)
+    generic_response $1, *args
   else
     super
   end
