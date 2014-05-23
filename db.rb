@@ -6,7 +6,7 @@ password = ENV['PALYIO_PASSWORD']
 host     = ENV['PALYIO_HOST']
 database = ENV['PALYIO_DATABASE']
 
-DataMapper.setup(:default, "mysql://#{username}:#{password}@#{host}/#{database}")
+DataMapper.setup :default, "mysql://#{username}:#{password}@#{host}/#{database}"
 
 class Link
   include DataMapper::Resource
