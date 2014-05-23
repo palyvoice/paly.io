@@ -22,7 +22,7 @@ class PalyIO
 
     get '/qr/:key' do
       content_type 'image/png'
-      qr = open("#{host}/#{params[:key]}".to_qr(:size => '250x250'))
+      qr = open "#{host}/#{params[:key]}".to_qr(:size => '250x250')
       qr.read
     end
 
