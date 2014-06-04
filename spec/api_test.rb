@@ -1,7 +1,4 @@
-require 'awesome_print'
 require 'json'
-
-require './api'
 require 'spec_helper'
 
 describe PalyIO::API do
@@ -9,14 +6,6 @@ describe PalyIO::API do
 
   def app
     PalyIO::API
-  end
-
-  def gen_link key, url
-    Link.create :shortkey => key, :url => url
-  end
-
-  def link_hash link
-    link.attributes.with_indifferent_access
   end
 
   context :api do

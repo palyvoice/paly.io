@@ -1,7 +1,13 @@
-require './app'
 require 'spec_helper'
+require 'pry'
 
 describe PalyIO::Web do
+  include Rack::Test::Methods
+
+  def app
+    PalyIO::Web
+  end
+
   before :all do
     Capybara.app_host = ENV['PALYIO_HOSTNAME']
     Capybara.run_server = false
@@ -25,7 +31,7 @@ describe PalyIO::Web do
     it 'should have a submittable form' do
       within '#urlform' do
         fill_in 'url', :with => Faker::Internet.http_url
-        fill_in 'customurl', :with => Faker.numerify '######'
+        fill_in 'customurl', :with => Faker.numerify('######')
       end
       find_button('submit').click
       expect(page).to have_content 'Your shortened URL is'
@@ -34,7 +40,7 @@ describe PalyIO::Web do
     it 'disallows custom urls under 5 characters' do
       within '#urlform' do
         fill_in 'url', :with => Faker::Internet.http_url
-        fill_in 'customurl', :with => Faker.numerify '##'
+        fill_in 'customurl', :with => Faker.numerify('##')
       end
       find_button('submit').click
       expect(page).to have_content 'Error'
@@ -50,7 +56,7 @@ describe PalyIO::Web do
 
     it 'displays a message after you stop typing a custom url' do
       within '#urlform' do
-        fill_in 'customurl', :with => Faker.numerify '#######'
+        fill_in 'customurl', :with => Faker.numerify('#######')
       end
       expect(page).to have_content 'URL is valid.'
       expect(page).to have_selector('.message-box.valid', :visible => true)
@@ -59,6 +65,24 @@ describe PalyIO::Web do
         fill_in 'customurl', :with => ''
       end
       expect(page).to have_selector('.message-box.valid', :visible => false)
+    end
+
+    it 'redirects properly' do
+      url = Faker::Internet.http_url
+      custom = Faker.numerify '######'
+      l = Link.create :shortkey => custom, :url => url
+
+      get "/#{custom}"
+
+      last_response.should be_redirect
+      follow_redirect!
+
+      # Need to remove trailing slash because apparently Chrome adds it
+      last_request.url.chomp('/').should == url
+
+      # If the above is too hacky, check the headers for redirect. Could also
+      # check the HTTP code (expected 301 moved temporarily)
+      # last_response.header['Location'].should == url
     end
   end
 end

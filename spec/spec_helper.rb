@@ -14,11 +14,28 @@ require 'rack/test'
 require 'minitest/autorun'
 require 'ffaker'
 
+require 'awesome_print'
+
+require './api'
+require './app'
+
+Link.destroy!
+
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new app, :browser => :chrome
 end
 
-#Capybara.javascript_driver = :chrome
+def app
+  PalyIO::API
+end
+
+def gen_link key, url
+  Link.create :shortkey => key, :url => url
+end
+
+def link_hash link
+  link.attributes.with_indifferent_access
+end
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
