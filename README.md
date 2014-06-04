@@ -2,7 +2,7 @@
 #### Paly's URL shortener
 By [Maxwell Bernstein](http://bernsteinbear.com) and [Christopher Hinstorff](http://chinstorff.com) for [The Paly Voice](http://palyvoice.com)
 
-version 0.0.3
+version 0.0.4
 
 ## About
 *paly.io* is a URL shortener written in Ruby intended to be used by the Palo Alto High School (Paly) community.

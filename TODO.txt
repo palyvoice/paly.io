@@ -6,6 +6,7 @@ Functionality
   -> mail urls like mailto:dumbass@maxbernste.in are prepended with http :(
 - Create overwrite code
 - Stats page
+  -> Use API to generate graphs or frequency or whatever
 
 API
 
