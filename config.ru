@@ -1,7 +1,7 @@
 require 'rack/throttle'
 require 'rack/cors'
 
-require './before'
+require './patches'
 require './app'
 require './api'
 

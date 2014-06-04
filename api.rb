@@ -18,7 +18,9 @@ class PalyIO
       link = fetch_url key
 
       if link
-        return gen_meta_response true, link, 'URL exists.'
+        # Gets the hit objects then changes the name in the resulting hash
+        modified = link.with_attributes(:hit_objs).attribute_replace(:hit_objs, :hits)
+        return gen_meta_response true, modified, 'URL exists.'
       else
         return gen_meta_response false, nil, 'URL does not exist.'
       end
