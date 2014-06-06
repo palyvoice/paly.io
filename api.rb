@@ -10,7 +10,7 @@ class PalyIO
       custom = params[:custom].strip
       valid, reason = valid_custom_key? custom
 
-      return gen_validation_response valid, custom, reason
+      return gen_validate_response valid, custom, reason
     end
 
     get '/meta' do
@@ -24,6 +24,25 @@ class PalyIO
       else
         return gen_meta_response false, nil, 'URL does not exist.'
       end
+    end
+
+    get '/stats' do
+      key = params[:key]
+      link = fetch_url key
+
+      stats = {
+        :key => key,
+        :created_at => link.created_at,
+        :hit_count => link.hit_objs.length,
+        :hits => link.hit_objs
+      }
+
+      if link
+        return gen_stats_response true, stats, 'URL exists.'
+      else
+        return gen_stats_response false, nil, 'URL does not exist.'
+      end
+
     end
 
     get '/whatis' do
@@ -62,7 +81,7 @@ class PalyIO
     end
 
     get '/qr' do
-      gen_qr_code_response true, "#{host}/#{params[:key]}".to_qr(:size => '250x250'), 'Not confirming that this is valid.'
+      gen_qr_response true, "#{host}/#{params[:key]}".to_qr(:size => '250x250'), 'Not confirming that this is valid.'
     end
   end
 end
