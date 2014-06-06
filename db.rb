@@ -16,6 +16,7 @@ class Link
   property :shortkey, String, :unique => true
   property :url, Text
   property :hits, Integer, :default => 0
+  property :created_at, DateTime
 
   has n, :hit_objs, 'Hit'
 
