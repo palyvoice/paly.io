@@ -37,6 +37,10 @@ def link_hash link
   link.attributes.with_indifferent_access
 end
 
+def last_hash
+  JSON.parse(last_response.body)
+end
+
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
