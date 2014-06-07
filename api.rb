@@ -30,14 +30,14 @@ class PalyIO
       key = params[:key]
       link = fetch_url key
 
-      stats = {
-        :key => key,
-        :created_at => link.created_at,
-        :hit_count => link.hit_objs.length,
-        :hits => link.hit_objs
-      }
-
       if link
+        stats = {
+          :key => key,
+          :created_at => link.created_at,
+          :hit_count => link.hit_objs.length,
+          :hits => link.hit_objs
+        }
+
         return gen_stats_response true, stats, 'URL exists.'
       else
         return gen_stats_response false, nil, 'URL does not exist.'
