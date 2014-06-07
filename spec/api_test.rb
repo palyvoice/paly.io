@@ -13,7 +13,7 @@ describe PalyIO::API do
       it 'shortens a given url' do
         get '/shorten', { :url => Faker::Internet.http_url, :custom => '' }
 
-        hash = JSON.parse(last_response.body)
+        hash = last_hash
         hash['success'].should == true
       end
     end
@@ -26,7 +26,7 @@ describe PalyIO::API do
 
         get '/whatis', { :key => key }
 
-        hash = JSON.parse(last_response.body)
+        hash = last_hash
         hash['success'].should == true
         hash['response'].should == url
       end
@@ -40,9 +40,9 @@ describe PalyIO::API do
 
         get '/meta', { :key => key }
 
-        hash = JSON.parse(last_response.body)
+        hash = last_hash
         hash['success'].should == true
-        hash['response'].should == link
+        hash['response']['url'].should == link[:url]
       end
     end
 
@@ -52,7 +52,7 @@ describe PalyIO::API do
 
         get '/validate', { :custom => custom }
 
-        hash = JSON.parse(last_response.body)
+        hash = last_hash
         hash['success'].should == true
         hash['response'].should == custom
       end
@@ -62,7 +62,7 @@ describe PalyIO::API do
 
         get '/validate', { :custom => custom }
 
-        hash = JSON.parse(last_response.body)
+        hash = last_hash
         hash['success'].should == false
         hash['response'].should == custom
       end
@@ -74,8 +74,23 @@ describe PalyIO::API do
 
         get '/qr', { :key => key }
 
-        hash = JSON.parse(last_response.body)
+        hash = last_hash
         hash['success'].should == true
+      end
+    end
+
+    describe 'GET /stats' do
+      it 'returns stats about a given key' do
+        url = Faker::Internet.http_url
+        key = Faker.numerify('#####')
+        link = link_hash gen_link(key, url)
+
+        get '/stats', { :key => key }
+
+        hash = last_hash
+        hash['success'].should == true
+        hash['response']['key'].should == key
+        hash['response']['hits'].should_not == nil
       end
     end
   end

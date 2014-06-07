@@ -16,6 +16,7 @@ require 'ffaker'
 
 require 'awesome_print'
 
+require './patches'
 require './api'
 require './app'
 
