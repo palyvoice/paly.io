@@ -1,6 +1,5 @@
 require 'grape'
 require './db'
-require './patches'
 require './helpers'
 
 class PalyIO
