@@ -2,6 +2,7 @@ require 'google-qr'
 require 'open-uri'
 require 'sinatra'
 require './db'
+require './patches'
 require './helpers'
 
 class PalyIO
