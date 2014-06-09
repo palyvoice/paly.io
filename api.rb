@@ -69,7 +69,7 @@ class PalyIO
       end
 
       url, type = classify_long url
-      valid, reason = valid_custom_key? custom
+      valid, reason = valid_key? custom
 
       if custom.empty?
         key = gen_key
