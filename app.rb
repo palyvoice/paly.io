@@ -11,8 +11,10 @@ class PalyIO
     end
 
     get '/:key' do
-      if key_exists? params[:key]
-        l = fetch_url params[:key]
+      key = params[:key].strip
+
+      if key_exists? key
+        l = fetch_url key
         h = Hit.create :link => l
         redirect to l.url
       end
