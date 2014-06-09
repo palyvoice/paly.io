@@ -5,11 +5,13 @@ def host
 end
 
 def gen_rand size=6
+  # tries to avoid confusion inside set of numbers and letters
   charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T U W X Y Z}
   (0...size).map{ charset.to_a[rand charset.size] }.join
 end
 
 def fetch_url key
+  # case insensitive
   Link.first :shortkey => key.upcase
 end
 
@@ -24,21 +26,46 @@ end
 def gen_key size=6, num_attempts=0
   attempt = gen_rand size
   if key_exists? attempt
+    # don't endlessly recurse
     return gen_key size+1 if num_attempts > 9
-    return gen_key size, num_attempts + 1
+    return gen_key size, num_attempts+1
   else
     return attempt
   end
 end
 
-def valid_long_url? url
-  return !url.strip.empty?
+def build_stats link
+  {
+    :key => link.shortkey,
+    :created_at => link.created_at,
+    :hit_count => link.hit_objs.length,
+    :hits => link.hit_objs
+  }
 end
 
-def valid_custom_key? key
+def classify_long long
+  case long
+    # email: has anything@anything.anything
+  when /.+@.+\..+/
+    long = "mailto:#{long}" if not long[/^mailto:/]
+    return long, :email
+
+    # url: has (an http/https (maybe) followed by slashes) (maybe) followed by anything .anything (maybe)
+  when /^(https?:\/\/)?.+(\..+)?/
+    long = "http://#{long}" if not long[/^https?/]
+    return long, :url
+
+    # otherwise...
+  else
+    return long, :invalid
+  end
+end
+
+def valid_key? key
   # five or more letters/digits/underscores/dashes, no leading/trailing underscores/dashes
   exp = /^[a-zA-Z0-9]([\w]|-){3,}[a-zA-Z0-9]$/
 
+  # doesn't match our requirements
   if (key =~ exp) != 0
     return false, 'URL is too short or does not have only alphanumeric, underscore, and dash characters.'
   elsif key_exists? key
