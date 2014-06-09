@@ -13,6 +13,7 @@ class Link
   include DataMapper::Resource
 
   property :id, Serial
+  # field "key" is already taken
   property :shortkey, String, :unique => true
   property :url, Text
   property :hits, Integer, :default => 0
