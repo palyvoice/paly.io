@@ -45,6 +45,10 @@ end
 
 def classify_long long
   case long
+    # bitcoin: starts with bitcoin: and matches valid characters
+  when /^(bitcoin\:)?[13][a-km-zA-HJ-NP-Z0-9]{26,33}$/
+    long = "bitcoin:#{long}" if not long[/^bitcoin\:/]
+    return long, :bitcoin
     # email: has anything@anything.anything
   when /.+@.+\..+/
     long = "mailto:#{long}" if not long[/^mailto:/]
