@@ -1,5 +1,4 @@
 Functionality
-- Voice story URLs
 - Better error handling
   -> Including a separate error_message file?
 - Create overwrite code
