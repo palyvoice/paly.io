@@ -21,6 +21,12 @@ class PalyIO
       'URL does not exist'
     end
 
+    get '/v/:key' do
+      key = params[:key].strip
+
+      redirect to "http://palyvoice.com/?p=#{key}"
+    end
+
     get '/qr/:key' do
       content_type 'image/png'
       qr = open "#{host}/#{params[:key]}".to_qr(:size => '250x250')
