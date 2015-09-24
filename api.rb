@@ -66,6 +66,8 @@ class PalyIO
 
       if url.empty?
         return gen_shorten_response false, nil, 'Long URL is blank'
+      elsif not (url.include? ".")
+        return gen_shorten_response false, nil, 'The URL needs to be a valid link.'
       end
 
       url, type = classify_long url
